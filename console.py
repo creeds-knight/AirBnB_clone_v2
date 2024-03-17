@@ -118,10 +118,42 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        
+        """ Splitting arguments based on spec"""
+        params = args.split()
+        """Retrieve class name from param"""
+        class_name = params[0]
+        """Checking for class name in the dictionary"""
+        if class_name not in HBNBCommand.classes:
+            print("** class name don't exist **")
+            return
+        """dictionary to store our key,value pair"""
+        obj_params = {}
+        """looping through other remaining params"""
+        for param in params[1:]:
+            # param splitting using = sign
+            key, value = param.split('=')
+            # replace underscores with spaces
+            key = key.replace('_', ' ')
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1]
+            # value conversion to appropriate data types
+            if '.' in value:
+                value = float(value)
+            elif value.isdigit():
+                value = int(value)
+            
+            # add key value pair to dictionary
+            obj_params[key] = value
+            # creating class instance
+            new_instance = HBNBCommand.classes[class_name](**obj_params)
+            
+
+        """elif args not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[args]()"""
+        
         storage.save()
         print(new_instance.id)
         storage.save()
