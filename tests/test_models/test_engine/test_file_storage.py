@@ -4,13 +4,15 @@ import unittest
 from models.base_model import BaseModel
 from models import storage
 import os
-
+from models.state import State
+from models.engine.file_storage import FileStorage
 
 class test_fileStorage(unittest.TestCase):
     """ Class to test the file storage method """
 
     def setUp(self):
         """ Set up test environment """
+        self.fs = FileStorage()
         del_list = []
         for key in storage._FileStorage__objects.keys():
             del_list.append(key)
