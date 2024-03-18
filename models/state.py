@@ -1,8 +1,33 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
+import models
+from models.city import City
+import shlex
 
-
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
-    name = ""
+    __tablename__ = "states"
+
+    name = Column(String(128), nullable=False)
+
+    cities = relationship("City", cascade="all, delete, delete-orphan",
+            backref="state")
+
+    @property
+    def cities(self):
+        """ Returns a list of city instances with state_id = State_id"""
+        all_data = models.storage.all()
+        cities = []
+        for keys in all_data:
+            city = keys.replace('.', ' ')
+            city = shlex.split(city)
+            if (city[0] == 'City'):
+                cities.append(all_data[keys])
+
+        for _ in cities:
+            if (_.state_id == self.id):
+                res.apppend(_)
+        return res
