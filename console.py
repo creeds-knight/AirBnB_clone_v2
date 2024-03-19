@@ -10,7 +10,6 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -121,14 +120,13 @@ class HBNBCommand(cmd.Cmd):
             return
 
         """ Splitting arguments based on spec"""
-        params = shlex.split(args)
+        params = args.split()
         """Retrieve class name from param"""
         class_name = params[0]
         """Checking for class name in the dictionary"""
         if class_name not in HBNBCommand.classes:
             print("** class name don't exist **")
             return
-
         # class instanciation
         new_instance = HBNBCommand.classes[class_name]()
 
