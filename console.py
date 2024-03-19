@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
             if len(kv) == 2:
                 k, v = kv
             if v[0] == v[-1] == '"':
-                v = v.replace('"', '\"').replace("_", " ")
+                v = v.replace('"', '').replace("_", " ")
             setattr(new_instance, k, v)
 
         storage.new(new_instance)
