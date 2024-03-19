@@ -127,31 +127,17 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in HBNBCommand.classes:
             print("** class name don't exist **")
             return
-        """dictionary to store our key,value pair"""
-        obj_params = {}
-        """looping through other remaining params"""
-        for param in params[1:]:
-            # param splitting using = sign
-            key, value = param.split('=')
-            # replace underscores with spaces
-            key = key.replace('_', ' ')
-            if value.startswith('"') and value.endswith('"'):
-                value = value[1:-1]
-            # value conversion to appropriate data types
-            if '.' in value:
-                value = float(value)
-            elif value.isdigit():
-                value = int(value)
+        # class instanciation
+        new_instance = HBNBCommand.classes[class_name]()
 
-            # add key value pair to dictionary
-            obj_params[key] = value
-            # creating class instance
-            new_instance = HBNBCommand.classes[class_name](**obj_params)
-
-        """elif args not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        new_instance = HBNBCommand.classes[args]()"""
+        #parsing other parameters
+        for i in range(1, len(params)):
+            kv = params[i].split("=")
+            if len(kv) == 2:
+                k, v = kv
+            if v[0] == v[-1] == '"':
+                v = v.replace('"', '\"').replace("_", " ")
+            setattr(new_instance, k, v)
 
         storage.new(new_instance)
         storage.save()
