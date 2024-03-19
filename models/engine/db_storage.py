@@ -39,15 +39,15 @@ class DBStorage():
                 cls = eval(cls)
             query = self.__session.query(cls)
             for _ in query:
-                key = f"{type(_).__name__}, {_.id}"
+                key = f"{type(_).__name__}.{_.id}"
                 dct[key] = _
 
         else:
             classes = [State, City, User, Place, Review, Amenity]
             for clss in classes:
-                query =self.__session.query(clss)
+                query = self.__session.query(clss)
                 for _ in query:
-                    key = f"{type(_).__name__}, {_.id}"
+                    key = f"{type(_).__name__}.{_.id}"
                     dct[key] = _
         return dct
 
