@@ -35,28 +35,29 @@ class Place(BaseModel, Base):
         #amenities = relationship("Amenity", secondary="place_amenity",
         #                         viewonly=False)
 
-    @property
-    def reviews(self):
-        " Returns a list of all review instances"
-        from models import storage
-        from models.review import Review
-        all_reviews = storage.all(Review)
-        reviews = []
+    else:
+        @property
+        def reviews(self):
+            " Returns a list of all review instances"
+            from models import storage
+            from models.review import Review
+            all_reviews = storage.all(Review)
+            reviews = []
 
-        for k, v in all_reviews:
-            if v.get('place_id') == Place.id:
-                reviews.append(v)
-        return reviews
+            for k, v in all_reviews:
+                if v.get('place_id') == Place.id:
+                    reviews.append(v)
+            return reviews
 
-    """@property
-    def amenities(self):
-        "Returns a list of amenities based on amenity_id "
-        from models import storage
-        from models.amenity import Amenity
-        all_amenities = storage.all(Amenity)
-        amenity_lst = []
-        for k, v in all_amenities:
-            if v.get('place_id') == Place.id:
-                amenity_lst.append(v)
-        return amenity_lst"""
+        """@property
+        def amenities(self):
+            "Returns a list of amenities based on amenity_id "
+            from models import storage
+            from models.amenity import Amenity
+            all_amenities = storage.all(Amenity)
+            amenity_lst = []
+            for k, v in all_amenities:
+                if v.get('place_id') == Place.id:
+                    amenity_lst.append(v)
+            return amenity_lst"""
     pass
