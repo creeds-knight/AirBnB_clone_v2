@@ -4,7 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Float, Integer, Table
 import os
 from sqlalchemy.orm import relationship
-
+#from models.review import Review
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -30,14 +30,14 @@ class Place(BaseModel, Base):
         longitude = Column(Float)
         amenity_ids = []
 
-        reviews = relationship("Review", cascade="all, delete, delete-orphan",
-                               backref="place")
+        #reviews = relationship("Review", cascade="all, delete, delete-orphan",
+         #                      backref="place")
         #amenities = relationship("Amenity", secondary="place_amenity",
-                                 viewonly=False)
+        #                         viewonly=False)
 
-    @property
+    """@property
     def reviews(self):
-        """ Returns a list of all review instances """
+        " Returns a list of all review instances"
         from models import storage
         from models.review import Review
         all_reviews = storage.all(Review)
@@ -46,11 +46,11 @@ class Place(BaseModel, Base):
         for k, v in all_reviews:
             if v.get('place_id') == Place.id:
                 reviews.append(v)
-        return reviews
+        return reviews"""
 
     """@property
     def amenities(self):
-        """Returns a list of amenities based on amenity_id """
+        "Returns a list of amenities based on amenity_id "
         from models import storage
         from models.amenity import Amenity
         all_amenities = storage.all(Amenity)
@@ -59,4 +59,4 @@ class Place(BaseModel, Base):
             if v.get('place_id') == Place.id:
                 amenity_lst.append(v)
         return amenity_lst"""
-
+    pass
