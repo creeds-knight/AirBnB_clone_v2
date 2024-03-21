@@ -30,12 +30,12 @@ class Place(BaseModel, Base):
         longitude = Column(Float)
         amenity_ids = []
 
-        #reviews = relationship("Review", cascade="all, delete, delete-orphan",
-         #                      backref="place")
+        reviews = relationship("Review", cascade="all, delete, delete-orphan",
+                               backref="place")
         #amenities = relationship("Amenity", secondary="place_amenity",
         #                         viewonly=False)
 
-    """@property
+    @property
     def reviews(self):
         " Returns a list of all review instances"
         from models import storage
@@ -46,7 +46,7 @@ class Place(BaseModel, Base):
         for k, v in all_reviews:
             if v.get('place_id') == Place.id:
                 reviews.append(v)
-        return reviews"""
+        return reviews
 
     """@property
     def amenities(self):
