@@ -19,7 +19,7 @@ done
 echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
 
 sudo chown -R ubuntu:ubuntu /data/
-ln -sf /data/web/static/releases/test/ /data/web_static/current
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 #updating nginx configuration
 
 echo "server{
@@ -36,9 +36,8 @@ echo "server{
     	alias /data/web_static/current/;
 	index index.htm index.html;
     }
-}" | sudo tee /etc/nginx/sites-available/default
+}" > /etc/nginx/sites-available/default
 
-sudo echo "Holberton School" > /data/web_static/current/index.html
 
 #restarting nginx
 
