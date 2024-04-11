@@ -17,7 +17,7 @@ done
 
 echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
 
-sudo chown -R ubuntu:ubuntu /data/
+sudo chown -R ubuntu:ubuntu /data/web_static
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 #updating nginx configuration
 
