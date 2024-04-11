@@ -6,13 +6,18 @@ if ! dpkg -l | grep nginx; then
 	sudo apt-get -y install nginx
 fi
 #creating folders
-sudo mkdir -p /data/web_static/releases/test/
-sudo mkdir -p /data/web_static/shared/
+
+folders=("/data/" "/data/web_static/" "/data/web_static/releases/"
+"/data/web_static/shared" "/data/web_static/releases/test/")
+for i in "${folders[@]}"; do
+	sudo mkdir -p "$i"
+done
+
 #creating test file
 
 echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
 
-sudo chown -R ubuntu:ubuntu /data/web_static
+sudo chown -R ubuntu:ubuntu /data/web_static/
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 #updating nginx configuration
 
