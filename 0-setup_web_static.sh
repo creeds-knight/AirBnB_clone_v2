@@ -11,7 +11,6 @@ folders=("/data/" "/data/web_static/" "/data/web_static/releases/"
 "/data/web_static/shared" "/data/web_static/releases/test/")
 for i in "${folders[@]}"; do
 	sudo mkdir -p "$i"
-	sudo chown -R ubuntu:ubuntu "$i"
 done
 
 #creating test file
