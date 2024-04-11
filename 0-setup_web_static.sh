@@ -16,7 +16,7 @@ done
 
 #creating test file
 
-echo "This is a test file" | sudo tee /data/web_static/releases/test/index.html
+echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
 
 sudo chown -R ubuntu:ubuntu /data/
 ln -sf /data/web/static/releases/test/ /data/web_static/current
@@ -38,6 +38,9 @@ echo "server{
     }
 }" | sudo tee /etc/nginx/sites-available/default
 
+sudo echo "Holberton School" > /data/web_static/current/index.html
+
 #restarting nginx
 
 sudo service nginx restart
+exit 0
