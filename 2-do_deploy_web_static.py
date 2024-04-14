@@ -7,6 +7,7 @@ env.hosts = ['34.227.101.220', '52.86.118.253']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/id_rsa'
 
+
 def do_deploy(archive_path):
     """ Distributes an archive to the web severs """
     if not exists(archive_path):
@@ -23,8 +24,8 @@ def do_deploy(archive_path):
             filename, foldername))
         run('sudo rm /tmp/{}'.format(filename))
         run('sudo rm -rf /data/web_static/current')
-        run('sudo ln -s /data/web_static/releases/{}/web_static /data/web_static/current'
-            .format(foldername))
+        run('sudo ln -s /data/web_static/releases/{}/web_static\
+            /data/web_static/current'.format(foldername))
         print("New version deployed")
         return True
 
