@@ -21,7 +21,7 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def cisfun(text):
     """ displays variable"""
-    return f"C {escape(text.replace(' ', '_'))}"
+    return f"C {escape(text.replace('_', ' '))}"
 
 
 if __name__ == "__main__":
