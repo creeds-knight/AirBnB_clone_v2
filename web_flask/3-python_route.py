@@ -33,7 +33,7 @@ def pythoniscool(text="is cool"):
 @app.route('/python', strict_slashes=False)
 def python():
     """ returns python is cool"""
-    return " Python is cool"
+    return "Python is cool"
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
