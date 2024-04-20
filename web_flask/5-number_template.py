@@ -41,6 +41,7 @@ def prnt_number(n):
     """ returns n """
     return f"{n} is a number"
 
+
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def disp_number(n):
     """ return a web page if the number is an int"""
