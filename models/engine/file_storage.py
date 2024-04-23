@@ -15,7 +15,7 @@ class FileStorage:
         else:
             filtered_objects = {}
             for key, obj in FileStorage.__objects.items():
-                if type(obj) == cls:
+                if type(obj) is cls:
                     filtered_objects[key] = obj
             return filtered_objects
 
@@ -52,7 +52,7 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
 

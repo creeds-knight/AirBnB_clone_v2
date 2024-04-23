@@ -18,13 +18,14 @@ class State(BaseModel, Base):
         name = Column(String(128), nullable=False)
 
         cities = relationship("City", cascade="all, delete, delete-orphan",
-                          backref="state")
+                              backref="state")
     else:
         @property
         def cities(self):
             """ Returns a list of city instances with state_id = State_id"""
             all_data = models.storage.all()
             cities = []
+            res = []
             for keys in all_data:
                 city = keys.replace('.', ' ')
                 city = shlex.split(city)
